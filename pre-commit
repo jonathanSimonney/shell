@@ -1,0 +1,23 @@
+#!/bin/sh
+
+cd front # because I was in mono repo and the command had to be launched in front directory. adapt as needed
+echo "running tests against your frontend code"
+npm run test:ci
+if [ $? -eq 0 ]; then
+    echo "test ok. You may proceed to commit."
+    exit 0
+else
+    echo "your test don't pass, there must be a problem in your code."
+    while true; do
+        read -p "Do you wish to commit despite this ?" yn </dev/tty
+        case $yn in
+            [Yy]* ) exit 0;;
+            [Nn]* ) exit 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+    exit 1
+fi
+
+
+
