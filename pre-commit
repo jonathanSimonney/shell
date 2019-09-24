@@ -7,8 +7,17 @@ if [ $? -eq 0 ]; then
     echo "test ok. running build."
     npm run build
     if [ $? -eq 0 ]; then
-        echo "all right. Commiting ongoing."
-        exit 0
+        cd ../back # time to test the back. YEAH!
+        echo "test ok. checking backOffice test."
+        mvn -B -Dmaven.test.failure.ignore clean test
+        if [ $? -eq 0 ]; then
+            echo "test ok. checking backOffice formatting."
+            mvn -B fmt:check
+            if [ $? -eq 0 ]; then
+                echo "all right. Commiting ongoing."
+                exit 0
+            fi
+        fi
     fi
 fi
 echo "your test or build don't pass, there must be a problem in your code."
