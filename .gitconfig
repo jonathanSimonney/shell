@@ -3,3 +3,7 @@
         email = jonathan.simonney@polyconseil.fr
 [core]
         longpaths = true
+[alias]
+        st = status
+        go = checkout
+        br = branch
