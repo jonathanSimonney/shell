@@ -3,6 +3,7 @@
         email = jonathan.simonney@polyconseil.fr
 [core]
         longpaths = true
+        editor = vim
 [alias]
         st = status
         go = checkout
